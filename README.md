@@ -1,6 +1,6 @@
 <br />
 <div align="center">
-<h3 align="center">Plazoleta Restaurantes</h3>
+<h3 align="center">Plazoleta Mensajeria</h3>
 <p>Template: 
 <a href="https://gitlab.com/bootcamp-pragma/powerup-arquetipo">https://gitlab.com/bootcamp-pragma/powerup-arquetipo</a>
 </p>
@@ -16,7 +16,6 @@ To get a local copy up and running follow these steps.
 
 * JDK 11 [https://jdk.java.net/java-se-ri/11](https://jdk.java.net/java-se-ri/11)
 * Gradle [https://gradle.org/install/](https://gradle.org/install/)
-* PostgreSQL
 
 ### Recommended Tools
 * IntelliJ Community [https://www.jetbrains.com/idea/download/](https://www.jetbrains.com/idea/download/)
@@ -27,7 +26,7 @@ To get a local copy up and running follow these steps.
 1. Clone the repo
 2. Change directory
    ```sh
-   cd plazoleta-restaurantes
+   cd plazoleta-mensajeria
    ```
 3. Run docker compose `docker compose up -d`
 4. Run Spring Boot app
