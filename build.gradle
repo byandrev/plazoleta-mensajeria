@@ -40,7 +40,6 @@ dependencies {
     implementation "com.auth0:java-jwt:${jwtVersion}"
 
     implementation "org.springframework.boot:spring-boot-starter-websocket"
-    testImplementation "org.springframework.boot:spring-boot-starter-websocket-test"
 
     implementation group: "com.twilio.sdk", name: "twilio", version : "7.47.2"
     testImplementation ("org.springframework.boot:spring-boot-starter-test") {
