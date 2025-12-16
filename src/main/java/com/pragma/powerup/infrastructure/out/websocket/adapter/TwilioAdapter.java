@@ -1,10 +1,12 @@
 package com.pragma.powerup.infrastructure.out.websocket.adapter;
 
 import com.pragma.powerup.domain.spi.IMessageSendPort;
+import com.pragma.powerup.infrastructure.exception.InfraException;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -29,16 +31,16 @@ public class TwilioAdapter implements IMessageSendPort {
     @Override
     public void send(String to, String messageBody) {
         try {
-            Message message = Message.creator(
-                            new PhoneNumber(to),
-                            new PhoneNumber(fromNumber),
-                            messageBody
-                    ).create();
-
-            System.out.println("Mensaje Twilio enviado. SID: " + message.getSid());
+            Message.creator(
+                    new PhoneNumber(to),
+                    new PhoneNumber(fromNumber),
+                    messageBody
+            ).create();
         } catch (Exception e) {
-            System.err.println("Error al enviar SMS con Twilio: " + e.getMessage());
-            throw new RuntimeException("Fallo al enviar mensaje", e);
+            throw new InfraException(
+                "Error al enviar SMS con Twilio: " + e.getMessage(),
+                HttpStatus.BAD_REQUEST.value()
+            );
         }
     }
 
