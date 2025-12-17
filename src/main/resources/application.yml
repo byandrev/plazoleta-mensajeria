@@ -5,6 +5,10 @@ jwt:
   secret: ${JWT_SECRET}
   expiration: ${JWT_EXPIRATION_TIME}
 
+service:
+  secret:
+    plazoleta: ${MS_PLAZOLETA_SECRET_KEY}
+
 twilio:
   account-sid: ${TWILIO_ACCOUNT_SID}
   auth-token: ${TWILIO_AUTH_TOKEN}

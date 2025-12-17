@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,14 +21,19 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/v1/messages")
 @RequiredArgsConstructor
+@Tag(name = "Mensajería", description = "Endpoints para la gestión de notificaciones SMS y comunicaciones")
 public class MessageController {
 
     private final IMessageHandler messageHandler;
 
-    @Operation(summary = "Send message")
+    @Operation(
+            summary = "Enviar un mensaje de notificación",
+            description = "Permite enviar un mensaje SMS a un destinatario específico. Requiere roles de PROPIETARIO o EMPLEADO."
+    )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Message sent", content = @Content),
-            @ApiResponse(responseCode = "409", description = "Conflict to send message", content = @Content)
+            @ApiResponse(responseCode = "201", description = "Mensaje enviado exitosamente", content = @Content),
+            @ApiResponse(responseCode = "403", description = "No tiene permisos para realizar esta acción", content = @Content),
+            @ApiResponse(responseCode = "409", description = "Conflicto al intentar enviar el mensaje", content = @Content)
     })
     @PreAuthorize("hasAnyRole('PROPIETARIO', 'EMPLEADO')")
     @PostMapping("/")
